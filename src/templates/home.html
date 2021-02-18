@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title> Home Page </title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<div class="container-fluid">
+    <div class = "row">
+        <div class = "col">
+            <h1> Welcome to ProFunder</h1>
+        </div> 
+        <div class = "col d-flex justify-content-end ">
+            <button type="button" class="btn btn-outline-info mr-5">People</button>
+            <button type="button" class="btn btn-outline-info mr-5">About</button>
+            <button type="button" class="btn btn-outline-info mr-5" >Contact</button>
+            <button type="button" class="btn btn-primary mr-5">Login</button>
+        </div>
+    </div>
+    <div class = "container">
+        <img src="{%static 'img/home/Homepage.png'%}" alt="Logo" >
+    </div >
+    <p>Seeking projects that are already funded? Then you have come to the right 
+        place, <b>ProFunder</b>  is a where public and private institutions that have funds
+        for particular projects come and advertise those projects.</p>
+    <p>These projects are available to any public instituions of higher 
+        learning, T&C apply.</p>
+
+    <b>Funders</b>
+</div>
+<div class="container-fluid"> 
+        
+   <div class = "row mx-lg-n3 p-4"  >
+        <div class="col-sm">
+          <img src="{%static 'img/home/aas.png'%}" width="150" height="150">
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/chpc.png'%}" width="150" height="150">
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/Common-Fund.png'%}" width="150" height="150"  >
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/csir.png'%}" width="150" height="150"  >
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/h3d.png'%}" width="150" height="150"  >
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/NRF_LOGO.jpg'%}" width="150" height="150"  >
+        </div>
+   </div>
+   <div class = "row mx-lg-n3 p-4">
+        <div class="col-sm ">
+        <img src="{%static 'img/home/delgeme.jpg'%}" width="150" height="150">
+        </div>
+        <div class="col-sm">
+                <img src="{%static 'img/home/gates.gif'%}" width="150" height="150">
+        </div>
+        <div class="col-sm">
+                <img src="{%static 'img/home/h3abionet.png'%}" width="150" height="150"  >
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/h3africa.jpg'%}" width="150" height="150"  >
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/mmv.jpg'%}" width="150" height="120"  >
+        </div>
+        <div class="col-sm">
+            <img src="{%static 'img/home/NIH_Logo.png'%}" width="150" height="120"  >
+        </div>
+    </div>
+    <div class="row mx-lg-n3 p-4">
+        <div class="col-sm">
+            <img src="{%static 'img/home/gca.png'%}" width="150" height="120"  >
+        </div>
+    </div> 
+
+</div>
+
+</html>

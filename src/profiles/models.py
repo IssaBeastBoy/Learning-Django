@@ -7,4 +7,5 @@ class Profile(models.Model):
     Field = models.CharField(max_length=20, blank=False)
     Institution = models.CharField(max_length=20, blank=False)
     Interest =models.TextField()
+    Applications = models.TextField()
     
