@@ -7,9 +7,6 @@ def homepage(request):
     else:
          return render(request, "home.html", {})
 
-def login(request):
-    return render(request, "login.html", {})
-
 '''
 
 def FundingAv():
