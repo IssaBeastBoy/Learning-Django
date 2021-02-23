@@ -11,6 +11,3 @@ class Profile(models.Model):
     Interest =models.TextField()
     Applications = models.TextField()
     Password = models.CharField(max_length=50,blank=False)
-    
-    def get_absolute_url(self):
-        return 
