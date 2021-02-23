@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 class Profile(models.Model):
@@ -9,6 +10,7 @@ class Profile(models.Model):
     Institution = models.CharField(max_length=20, blank=False)
     Interest =models.TextField()
     Applications = models.TextField()
-    Password = models.TextField(blank=False)
+    Password = models.CharField(max_length=50,blank=False)
     
-    
+    def get_absolute_url(self):
+        return 

@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <title>Register</title>
+<body>
+
+<h2><b>Enter your details</b></h2>
+
+<form method="POST">{%csrf_token%}
+    {{form.as_p}}    
+    Comfirm Password:
+    <input type="password" >
+    <div>            
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+  </form>
+
+</body>
+</html>
