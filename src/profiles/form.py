@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import Profile
-
+'''
 class LoginForm (forms.ModelForm):    
     class Meta:
         model = Profile
@@ -35,7 +35,7 @@ class LoginForm (forms.ModelForm):
             if cur_obj == obj_number:
                 raise forms.ValidationError("Incorrect password")
 
-        
+  '''      
 
 class New_user (forms.ModelForm):
     class Meta:
@@ -52,15 +52,15 @@ class New_user (forms.ModelForm):
         widgets ={
             "Password":forms.PasswordInput(),
         }
+        
     def clean_Email(self):
         email = self.cleaned_data.get('Email')
-        obj_number = Profile.objects.count()
+        obj_number = Profile.objects.count() 
         cur_obj = 1
-        while (cur_obj < obj_number ):
-            users = Profile.objects.get(id = cur_obj)
+        while (cur_obj <= obj_number ):  
+            users = Profile.objects.get(id = int(cur_obj))
             if users.Email == email:
                 raise forms.ValidationError("Email already in use")
             cur_obj = cur_obj + 1
-            if cur_obj == obj_number:
-                return email
+        return email
                 

@@ -2,18 +2,21 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .form import LoginForm, New_user
+from .form import  New_user
 from .models import Profile
 
 def User_login(request):
-    #users = Profile.objects.get(id=1) 
-    form = LoginForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    stop = 1
+    Passwords = []
+    Emails = []
+    while(stop <= Profile.objects.count()):
+        users = Profile.objects.get(id=stop)
+        Passwords.append(users.Password)
+        Emails.append(users.Email)
+        stop = stop +1
     context = {
-        "form" : form,
-        #"Object": users,
-    }
+        "Password": Passwords,   
+        "Email": Emails }
     return render(request, "login.html", context)
 
 
