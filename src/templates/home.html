@@ -45,21 +45,37 @@
                 <h2 class="modal-title"><b>Login details</b></h2>                
             </div>
             <div class="modal-body">
-                <form method="POST">{%csrf_token%}                     
+                <form method="POST" >{%csrf_token%}                     
                     <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" id="Email1" placeholder="Enter email">
                     </div>
                     <br>
                     <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" name="Password" placeholder="Password">
+                    <input type="password" id="Password1" name="Password" placeholder="Enter password">
                     </div>
                     <br>  
                 </form>
                 <center>
                 <div class="modal-body">
-                    <button type="submit" class="btn btn-primary">Login</button>                      
+                    <button type="submit" class="btn btn-primary" id="User" onclick="Login()">Login</button>  
+                    <script type="text/javascript">
+                        var emails = "{{Emails}}";
+                        var passwords = "{{Passwords}}";
+                        var password_input = document.getElementById("Password1").value;
+                        var email_input = document.getElementById("Email1").value;
+                        document.write(password_input);                        
+                        function Login(){
+                            if(password_input == "" || password_input == null){
+                                document.write("Eish");
+                            }
+                            else if(email_input == "" || email_input == null){
+                                document.write("Eish");
+                            }
+                        }
+                    </script>
+                              
                     <a href="/Register"><button type="submit" class="btn btn-primary">Register</button></a>       
                     <button type="submit" class="btn btn-primary">Forgot password</button>
                 </div>
