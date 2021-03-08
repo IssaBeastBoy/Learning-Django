@@ -9,17 +9,19 @@ def User_login(request):
     stop = 1
     Passwords = []
     Emails = []
-    user_Name = ""
+    Users = []
     while(stop <= Profile.objects.count()):
         users = Profile.objects.get(id=stop)
-        Passwords.append(users.Password)
-        Emails.append(users.Email)
+        Passwords.append(str(users.Password))
+        Emails.append(str(users.Email))
+        Users.append(str(users.Name))
         stop = stop +1
     context={
         "Emails": Emails,
         "Passwords": Passwords,
+        "Users": Users,
     }
-    return render(request, "home.html", context)
+    return render(request, "home.html",context)
 
 
 def User_create(request):
@@ -31,3 +33,6 @@ def User_create(request):
     }
     return render(request, "NewUSER.html", context)
 
+
+def Account(request):
+    return render(request, "welcome.html", {})

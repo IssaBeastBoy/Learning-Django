@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path
 
 from pages.views import homepage #, FundingAv, Applications
-from profiles.views import User_login, User_create
+from profiles.views import User_login, User_create, Account
 
 urlpatterns = [
     path("", homepage),
     path('admin/', admin.site.urls),   
     path("login/", User_login),
     path("Register/", User_create),
+    path("MyAccount/", Account),
 ]
 '''
    

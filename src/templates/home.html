@@ -13,9 +13,7 @@
 </head>
 <div class="container-fluid">
     <div class = "row">
-        <div class = "col">
-            <h1> Welcome to ProFunder</h1>
-        </div> 
+        <div class="col"> <h3>Welcome to ProFunder</h3>    </div>
         <div class = "col d-flex justify-content-end ">
             <button type="button" class="btn btn-outline-info mr-5">People</button>
             <button type="button" class="btn btn-outline-info mr-5">About</button>
@@ -35,11 +33,11 @@
     <b>Funders</b>
 </div>
 
-<div class="modal" id="login" tabindex="-1" role="dialog" style="width: 50%;">
+<div class="modal" id="login" tabindex="-1" role="dialog" style="width: 50%; ">
     <div class="modal-dailog" role="document">
         <div class="modal-content">
             <div class="model-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="Close" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 <h2 class="modal-title"><b>Login details</b></h2>                
@@ -47,11 +45,15 @@
             <div class="modal-body">
                 <form method="POST" >{%csrf_token%}                     
                     <div class="form-group">
+                    <p id="NO_email" style="color: red; visibility: hidden;"> *Email required</p>
+                    <p id="W_email" style="color: red; visibility: hidden;"> *Incorrect Email </p>
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" id="Email1" placeholder="Enter email">
                     </div>
                     <br>
                     <div class="form-group">
+                    <p id="NO_password" style="color: red; visibility: hidden;">*Password required</p>
+                    <p id="W_password" style="color: red; visibility: hidden;">*Incorrect Password</p>
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" id="Password1" name="Password" placeholder="Enter password">
                     </div>
@@ -60,19 +62,84 @@
                 <center>
                 <div class="modal-body">
                     <button type="submit" class="btn btn-primary" id="User" onclick="Login()">Login</button>  
-                    <script type="text/javascript">
-                        var emails = "{{Emails}}";
-                        var passwords = "{{Passwords}}";
-                        var password_input = document.getElementById("Password1").value;
-                        var email_input = document.getElementById("Email1").value;
-                        document.write(password_input);                        
+                    <script type="text/javascript">                            
                         function Login(){
+                            var password_input = document.getElementById("Password1").value;
+                            var email_input = document.getElementById("Email1").value;                      
+
+                            document.getElementById("Password1").style.borderColor = "black";
+                            document.getElementById("NO_password").style.visibility = "hidden";
+                            document.getElementById("W_password").style.visibility = "hidden";
+                            document.getElementById("Email1").style.borderColor = "black";
+                            document.getElementById("NO_email").style.visibility = "hidden";
+                            document.getElementById("W_email").style.visibility = "hidden";
+
+                            var not_EmmptyE = true;
+                            var not_EmmptyP = true;
+
                             if(password_input == "" || password_input == null){
-                                document.write("Eish");
+                               document.getElementById("Password1").style.borderColor = "red";
+                               document.getElementById("NO_password").style.visibility = "visible";                              
+                               not_EmmptyP = false;
                             }
-                            else if(email_input == "" || email_input == null){
-                                document.write("Eish");
+                            if(email_input == "" || email_input == null){
+                                document.getElementById("Email1").style.borderColor = "red";
+                                document.getElementById("NO_email").style.visibility = "visible";
+                                not_EmmptyE = false;
                             }
+                            
+                            emails ="{{Emails|safe}}";
+                            passwords = "{{Passwords|safe}}";
+                            users = "{{User|safe}}"
+
+                            emails = emails.replace('[', '');
+                            emails = emails.replace(']', '');                            
+                            emails = emails.split(',');
+
+                            passwords = passwords.replace('[', '');
+                            passwords = passwords.replace(']', '');
+                            passwords = passwords.split(',');
+
+                            users = users.replace('[', '');
+                            users = users.replace(']', '');                            
+                            users = users.split(',');
+
+                            var parse;
+                            var boolE;
+                            var boolP;
+                            if(not_EmmptyE){
+                                for (parse = 0; parse < emails.length; parse++) {
+                                    var emailIndex = emails[parse].substring(1, emails[parse].length-1);
+                                    if(email_input == emailIndex){
+                                        users = users[parse];
+                                        boolE = -1;
+                                        break
+                                    }
+                                }
+                                if (boolE != -1){
+                                    document.getElementById("Email1").style.borderColor = "red";
+                                    document.getElementById("W_email").style.visibility = "visible";
+                                }
+                            }
+                            boolP = 0;
+                            if(not_EmmptyP){
+                                for (parse = 0; parse < passwords.length; parse++) {  
+                                    var passwordIndex = passwords[parse].substring(1, passwords[parse].length-1);                    
+                                    if(passwordIndex == password_input){
+                                        boolP = -1;
+                                        break
+                                    }
+                                }
+                                if (boolP != -1){
+                                    document.getElementById("Password1").style.borderColor = "red";
+                                    document.getElementById("W_password").style.visibility = "visible";
+                                }
+                            }
+                            if(boolP == -1 && boolE == -1){
+                                window.location.replace("MyAccount/");
+                                document.getElementById("Close").click();
+                            }
+
                         }
                     </script>
                               
